@@ -18,20 +18,24 @@ import java.util.List;
 @Getter
 @Setter
 public class Company implements Serializable {
+
     @Id
-    private Long id;
+    private String id;
     private String nom;
     private String ville;
     private String pays;
     private String website;
     private String activity;
     private String desciption;
+
     @DBRef
     @CascadeSave
     private List<Candidate> candidates;
+
     @DBRef
     @CascadeSave
     private List<Job> jobs;
+
     @DBRef
     @CascadeSave
     private List<CompanyAccount> companyAccounts;

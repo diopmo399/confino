@@ -15,5 +15,6 @@ public class CascadeSaveMongoEventListener extends AbstractMongoEventListener<Ob
     public void onBeforeConvert(final BeforeConvertEvent<Object> event) {
         final Object source = event.getSource();
         ReflectionUtils.doWithFields(source.getClass(), new CascadeCallback(source, mongoOperations));
+
     }
 }
