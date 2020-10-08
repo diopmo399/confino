@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Variable {
-     final static List<Job> JOBS = new ArrayList<>(Arrays.asList(
+public class VARIABLES {
+     public final static List<Job> JOBS = new ArrayList<>(Arrays.asList(
             Job.builder()
                     .id("15ee")
                     .name("Software Engineer")
@@ -22,7 +22,7 @@ public class Variable {
                     .typeOfContract("CDI")
                     .build()
     ));
-     final static List<Candidate> CANDIDATES = new ArrayList<>(Arrays.asList(
+     public final static List<Candidate> CANDIDATES = new ArrayList<>(Arrays.asList(
             Candidate.builder()
                     .id("45er")
                     .email("diopmo@ept.sn")
@@ -36,7 +36,7 @@ public class Variable {
                     .lastName("SOW")
                     .build()
     ));
-     final static List<CompanyAccount> COMPANY_ACCOUNTS = new ArrayList<>(Arrays.asList(
+     public final static List<CompanyAccount> COMPANY_ACCOUNTS = new ArrayList<>(Arrays.asList(
             CompanyAccount.builder()
                     .id("155er")
                     .username("diopmo")

@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashSet;
+import java.util.List;
 
 @Document
 @Getter
@@ -19,9 +20,19 @@ public class CompanyAccount extends User {
 
     @DBRef
     @CascadeSave
-    private HashSet<Job> job;
+    private List<Job> jobs;
 
     @DBRef
     @CascadeSave
-    private HashSet<Candidate> candidate;
+    private List<Candidate> candidates;
+
+    @Builder
+    public CompanyAccount(String id, String firstName, String lastName, String email, String username,
+                          String password, List<Job> job, List<Candidate> candidate) {
+        super(id, firstName, lastName, email);
+        this.username = username;
+        this.password = password;
+        this.jobs = job;
+        this.candidates = candidate;
+    }
 }

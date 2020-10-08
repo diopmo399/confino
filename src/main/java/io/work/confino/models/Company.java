@@ -22,11 +22,11 @@ public class Company implements Serializable {
     @Id
     private String id;
     private String nom;
-    private String ville;
-    private String pays;
+    private String city;
+    private String country;
     private String website;
     private String activity;
-    private String desciption;
+    private String description;
 
     @DBRef
     @CascadeSave

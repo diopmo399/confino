@@ -16,4 +16,10 @@ public class Candidate extends User {
 @DBRef
 @CascadeSave
 private List<Job> jobs;
+
+    @Builder
+    public Candidate(String id, String firstName, String lastName, String email, List<Job> jobs) {
+        super(id, firstName, lastName, email);
+        this.jobs = jobs;
+    }
 }

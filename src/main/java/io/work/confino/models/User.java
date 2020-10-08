@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import java.io.Serializable;
 
 
-@Builder
 @Getter
 @Setter
 @AllArgsConstructor
