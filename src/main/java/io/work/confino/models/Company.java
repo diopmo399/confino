@@ -1,15 +1,12 @@
 package io.work.confino.models;
-import io.work.confino.annotation.CascadeSave;
+import io.work.confino.aspect.CascadeSave;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.annotation.Generated;
 import java.io.Serializable;
 import java.util.List;
 

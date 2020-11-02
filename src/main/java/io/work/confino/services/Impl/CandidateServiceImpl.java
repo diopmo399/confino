@@ -4,9 +4,11 @@ import io.work.confino.exceptions.ResourceNotFoundException;
 import io.work.confino.models.Candidate;
 import io.work.confino.repositories.CandidateMongoRepository;
 import io.work.confino.services.CandidateService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CandidateServiceImpl implements CandidateService {
 
     private final CandidateMongoRepository candidateMongoRepository;
@@ -40,6 +42,7 @@ public class CandidateServiceImpl implements CandidateService {
         candidateMongoRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Candidate with id: " +
                         id +" does not exist"));
+
         candidateMongoRepository.deleteById(id);
     }
 }

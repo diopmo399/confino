@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface CompanyService {
 
-    public List<Company> getAllCompanyAccount();
-    public Company saveCompanyAccount(CompanyAccount companyAccount);
-    public Company updateCompanyAccount(CompanyAccount companyAccount);
-    public void deleteCompanyAccount(String id);
+    public List<Company> getAllCompany();
+    public Company saveCompany(Company company);
+    public Company updateCompany(Company company);
+    public void deleteCompany(String id);
 }

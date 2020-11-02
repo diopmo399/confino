@@ -4,14 +4,16 @@ import io.work.confino.exceptions.ResourceNotFoundException;
 import io.work.confino.models.CompanyAccount;
 import io.work.confino.repositories.CompanyAccountMongoRepository;
 import io.work.confino.services.CompanyAccountService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class CompanyAccountImpl implements CompanyAccountService {
+@Service
+public class CompanyAccountServiceImpl implements CompanyAccountService {
 
     private final CompanyAccountMongoRepository companyAccountMongoRepository;
 
-    public CompanyAccountImpl(CompanyAccountMongoRepository companyAccountMongoRepository) {
+    public CompanyAccountServiceImpl(CompanyAccountMongoRepository companyAccountMongoRepository) {
         this.companyAccountMongoRepository = companyAccountMongoRepository;
     }
 
@@ -22,16 +24,13 @@ public class CompanyAccountImpl implements CompanyAccountService {
 
     @Override
     public CompanyAccount saveCompanyAccount(CompanyAccount companyAccount) {
-
         return companyAccountMongoRepository.save(companyAccount);
     }
 
     @Override
     public CompanyAccount updateCompanyAccount(CompanyAccount companyAccount) {
         return companyAccountMongoRepository.findById(companyAccount.getId())
-                .map(companyAccount1 -> {
-                    return companyAccountMongoRepository.save(companyAccount);
-                })
+                .map(companyAccount1 -> companyAccountMongoRepository.save(companyAccount))
                 .orElseThrow(()-> new ResourceNotFoundException("Company with id: " +
                         companyAccount.getId() + " does not existe"));
     }
@@ -41,6 +40,7 @@ public class CompanyAccountImpl implements CompanyAccountService {
         companyAccountMongoRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Company with id: " +
                                  id + " does not existe"));
+
         companyAccountMongoRepository.deleteById(id);
     }
 }

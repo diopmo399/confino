@@ -1,6 +1,6 @@
 package io.work.confino.exceptionHandler;
 
-import africa.atps.monitordata.exceptions.CustomNotFoundException;
+import io.work.confino.exceptions.CustomNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

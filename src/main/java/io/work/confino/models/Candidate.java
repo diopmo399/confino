@@ -1,7 +1,7 @@
 package io.work.confino.models;
 
 
-import io.work.confino.annotation.CascadeSave;
+import io.work.confino.aspect.CascadeSave;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;

@@ -1,6 +1,6 @@
 package io.work.confino.models;
 
-import io.work.confino.annotation.CascadeSave;
+import io.work.confino.aspect.CascadeSave;
 import io.work.confino.utils.LevelExperience;
 import lombok.Builder;
 import lombok.Getter;

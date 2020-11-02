@@ -1,13 +1,12 @@
 package io.work.confino.models;
 
-import io.work.confino.annotation.CascadeSave;
+import io.work.confino.aspect.CascadeSave;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.HashSet;
 import java.util.List;
 
 @Document
