@@ -7,7 +7,9 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Document
 @Getter
@@ -24,6 +26,10 @@ public class CompanyAccount extends User {
     @DBRef
     @CascadeSave
     private List<Candidate> candidates;
+
+    @DBRef
+    @CascadeSave
+    private Set<Role> roles = new HashSet<>();
 
     @Builder
     public CompanyAccount(String id, String firstName, String lastName, String email, String username,

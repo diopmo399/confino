@@ -1,6 +1,6 @@
-package io.work.yourschools.security.jwt;
+package io.work.confino.security.jwt;
 
-import io.work.yourschools.security.service.UserDetailsServiceImpl;
+import io.work.confino.security.service.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

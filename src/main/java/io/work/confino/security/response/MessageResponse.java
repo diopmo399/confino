@@ -1,4 +1,4 @@
-package io.work.yourschools.security.response;
+package io.work.confino.security.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

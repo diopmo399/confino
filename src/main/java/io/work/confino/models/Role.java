@@ -1,22 +1,19 @@
-package io.work.yourschools.entity;
+package io.work.confino.models;
 
-import io.work.yourschools.utils.ERole;
+import io.work.confino.utils.ERole;
 import lombok.Data;
-
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 
-@Entity
-@Table(name = "roles")
+@Document
 @Data
 public class Role implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private String id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+
     private ERole name;
 
 }

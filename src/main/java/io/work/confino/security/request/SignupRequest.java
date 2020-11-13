@@ -1,7 +1,5 @@
-package io.work.yourschools.security.request;
+package io.work.confino.security.request;
 
-import io.work.yourschools.entity.Etablissement;
-import io.work.yourschools.utils.ERole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,9 +23,9 @@ public class SignupRequest {
     @Size(max = 50)
     @Email
     private String email;
-    private String nom;
+    private String firstName;
 
-    private String prenom;
+    private String lastName;
 
     private Set<String> role;
 
@@ -35,11 +33,6 @@ public class SignupRequest {
     @Size(min = 6, max = 40)
     private String password;
 
-    private String niveauEtude;
-    private String serie;
-    private String fonction;
 
-    private Etablissement etablissement;
 
-    private ERole type;
 }

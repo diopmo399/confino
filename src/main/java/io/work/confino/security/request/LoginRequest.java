@@ -1,4 +1,4 @@
-package io.work.yourschools.security.request;
+package io.work.confino.security.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
