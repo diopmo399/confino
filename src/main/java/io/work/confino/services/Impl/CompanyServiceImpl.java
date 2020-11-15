@@ -2,6 +2,7 @@ package io.work.confino.services.Impl;
 
 import io.work.confino.exceptions.ResourceNotFoundException;
 import io.work.confino.models.Company;
+import io.work.confino.models.CompanyAccount;
 import io.work.confino.repositories.CompanyMongoRepository;
 import io.work.confino.services.CompanyService;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,12 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company saveCompany(Company company) {
         return companyMongoRepository.save(company);
+    }
+
+    @Override
+    public Company findCompanyById(String id) {
+        return companyMongoRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Company with id : " + id + " doesn't exist"));
     }
 
     @Override

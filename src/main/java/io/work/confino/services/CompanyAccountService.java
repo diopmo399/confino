@@ -9,6 +9,7 @@ public interface CompanyAccountService {
 
     public List<CompanyAccount> getAllCompanyAccount();
     public CompanyAccount saveCompanyAccount(CompanyAccount companyAccount);
+    public CompanyAccount findCompanyAccountById(String id);
     public CompanyAccount updateCompanyAccount(CompanyAccount companyAccount);
     public void deleteCompanyAccount(String id);
 }

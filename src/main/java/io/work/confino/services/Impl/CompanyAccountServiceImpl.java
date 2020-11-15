@@ -28,6 +28,12 @@ public class CompanyAccountServiceImpl implements CompanyAccountService {
     }
 
     @Override
+    public CompanyAccount findCompanyAccountById(String id) {
+        return companyAccountMongoRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Company Acount with id : " + id + " doesn't exist"));
+    }
+
+    @Override
     public CompanyAccount updateCompanyAccount(CompanyAccount companyAccount) {
         return companyAccountMongoRepository.findById(companyAccount.getId())
                 .map(companyAccount1 -> companyAccountMongoRepository.save(companyAccount))

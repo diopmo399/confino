@@ -38,6 +38,12 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
+    public Candidate findCandidateById(String id) {
+        return candidateMongoRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("candidate with the id : " + id + " doesn't exist"));
+    }
+
+    @Override
     public void deleteCandidate( String id) {
         candidateMongoRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Candidate with id: " +

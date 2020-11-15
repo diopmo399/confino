@@ -9,6 +9,7 @@ public interface JobService {
 
     public List<Job> getAllJob();
     public Job saveJob(Job job);
+    public Job finJobById(String id);
     public Job updateJob(Job job);
     public void deleteJob(String id);
 }

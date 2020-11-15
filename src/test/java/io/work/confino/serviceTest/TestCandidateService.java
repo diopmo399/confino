@@ -4,19 +4,23 @@ import io.work.confino.exceptions.ResourceNotFoundException;
 import io.work.confino.models.Candidate;
 import io.work.confino.repositories.CandidateMongoRepository;
 import io.work.confino.services.CandidateService;
+import io.work.confino.services.Impl.CandidateServiceImpl;
 import io.work.confino.utilsTest.VARIABLES;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 
@@ -25,18 +29,18 @@ public class TestCandidateService {
     @Mock
     private CandidateMongoRepository candidateMongoRepository;
 
-    @InjectMocks
     private CandidateService candidateService;
 
     @BeforeEach
     public void setup(){
 
         MockitoAnnotations.initMocks(this);
+        candidateService = new CandidateServiceImpl(candidateMongoRepository);
 
     }
 
     @Test
-    void shouldSavedCandidateSuccesFully(){
+    void shouldSavedCandidateSuccessFully(){
 
         final Candidate candidate = VARIABLES.CANDIDATES.get(0);
 
@@ -73,7 +77,44 @@ public class TestCandidateService {
 
         assertThrows(ResourceNotFoundException.class, ()-> candidateService.updateCandidate(candidate));
 
-        verify(candidateMongoRepository).save(any(Candidate.class));
+        verify(candidateMongoRepository, never()).save(any(Candidate.class));
+    }
+
+    @Test
+    void shouldReturnFindAll(){
+        List<Candidate> candidates = VARIABLES.CANDIDATES;
+
+        given(candidateMongoRepository.findAll()).willReturn(candidates);
+
+        List<Candidate> excepted = candidateService.getAllCandidate();
+
+        assertEquals(excepted, candidates);
+    }
+
+    @Test
+    void findCandidateId(){
+        final String id = VARIABLES.CANDIDATES.get(0).getId();
+        final Candidate candidate = VARIABLES.CANDIDATES.get(0);
+
+        given(candidateMongoRepository.findById(id)).willReturn(Optional.of(candidate));
+
+        final Candidate excepted = candidateService.findCandidateById(id);
+
+        assertThat(excepted).isNotNull();
+    }
+
+    @Test
+    void deleteCandidate(){
+        final String candidateId = VARIABLES.CANDIDATES.get(0).getId();
+
+        given(candidateMongoRepository.findById(candidateId)).willReturn(Optional.of(VARIABLES.CANDIDATES.get(0)));
+
+        candidateService.deleteCandidate(candidateId);
+        candidateService.deleteCandidate(candidateId);
+
+        verify(candidateMongoRepository, times(2) ).deleteById(candidateId);
+
+
     }
 
 }

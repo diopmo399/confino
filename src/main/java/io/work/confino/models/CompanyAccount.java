@@ -14,6 +14,7 @@ import java.util.Set;
 @Document
 @Getter
 @Setter
+
 public class CompanyAccount extends User {
 
     private String username;
@@ -40,4 +41,5 @@ public class CompanyAccount extends User {
         this.jobs = job;
         this.candidates = candidate;
     }
+    public CompanyAccount(){}
 }

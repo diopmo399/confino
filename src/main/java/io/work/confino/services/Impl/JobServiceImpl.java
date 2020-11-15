@@ -28,6 +28,12 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
+    public Job finJobById(String id) {
+        return jobMongoRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Job with the id : " + id + " doesn't exist"));
+    }
+
+    @Override
     public Job updateJob(Job job) {
         return jobMongoRepository.findById(job.getId())
                 .map(job1 -> {
