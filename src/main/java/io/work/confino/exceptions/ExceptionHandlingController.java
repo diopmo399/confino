@@ -41,11 +41,4 @@ public class ExceptionHandlingController {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    /*@ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResponseEntity<ExceptionMessage> badResquestParam(MissingServletRequestParameterException ex) {
-        ExceptionMessage response = new ExceptionMessage();
-        response.setErrorCode(HttpStatus.BAD_REQUEST.value());
-        response.setErrorMessage(ex.getMessage());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    }*/
 }

@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IOException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse handleBadRequest(Exception ex) {
-       return  new ApiResponse(400,ex.getMessage(),null);
+       return  new ApiResponse(400, ex.getMessage(),null);
     }
 
     @ExceptionHandler(CustomNotFoundException.class)
