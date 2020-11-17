@@ -23,6 +23,11 @@ public class CompanyController {
         return ResponseEntity.ok(companyService.getAllCompany());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Company> getCompanyById(@PathVariable String id){
+        return ResponseEntity.ok(companyService.findCompanyById(id));
+    }
+
     @PostMapping
     public ResponseEntity<Company> saveCompany(@RequestBody Company company){
         return ResponseEntity.status(HttpStatus.CREATED).body(companyService.saveCompany(company));

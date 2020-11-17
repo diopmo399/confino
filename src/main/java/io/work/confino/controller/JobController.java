@@ -23,6 +23,11 @@ public class JobController {
         return ResponseEntity.ok(jobService.getAllJob());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Job> getJobById(@PathVariable String id){
+        return ResponseEntity.ok(jobService.finJobById(id));
+    }
+
     @PostMapping
     public ResponseEntity<Job> saveJob(@RequestBody Job job){
         return ResponseEntity.status(HttpStatus.CREATED).body(jobService.saveJob(job));

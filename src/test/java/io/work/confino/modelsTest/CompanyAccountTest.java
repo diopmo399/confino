@@ -1,7 +1,7 @@
 package io.work.confino.modelsTest;
 
 import io.work.confino.models.CompanyAccount;
-import io.work.confino.utilsTest.VARIABLES;
+import io.work.confino.utilsTest.TestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,8 +31,8 @@ public class CompanyAccountTest {
                 .email(email)
                 .username(username)
                 .password(password)
-                .job(VARIABLES.JOBS)
-                .candidate(VARIABLES.CANDIDATES)
+                .job(TestHelper.JOBS)
+                .candidate(TestHelper.CANDIDATES)
                 .build();
     }
 
@@ -45,7 +45,7 @@ public class CompanyAccountTest {
         assertThat(companyAccount.getEmail()).isEqualTo(email);
         assertThat(companyAccount.getUsername()).isEqualTo(username);
         assertThat(companyAccount.getPassword()).isEqualTo(password);
-        assertThat(companyAccount.getCandidates()).isEqualTo(VARIABLES.CANDIDATES);
-        assertThat(companyAccount.getJobs()).isEqualTo(VARIABLES.JOBS);
+        assertThat(companyAccount.getCandidates()).isEqualTo(TestHelper.CANDIDATES);
+        assertThat(companyAccount.getJobs()).isEqualTo(TestHelper.JOBS);
     }
 }

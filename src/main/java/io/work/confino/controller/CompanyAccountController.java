@@ -23,6 +23,10 @@ public class CompanyAccountController {
         return ResponseEntity.ok(companyAccountService.getAllCompanyAccount());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<CompanyAccount> getCompanyAccountById(@PathVariable String id){
+        return ResponseEntity.ok(companyAccountService.findCompanyAccountById(id));
+    }
     @PostMapping
     public ResponseEntity<CompanyAccount> saveCompanyAccount(@RequestBody CompanyAccount companyAccount){
         return ResponseEntity.status(HttpStatus.CREATED)

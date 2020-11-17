@@ -22,4 +22,6 @@ private List<Job> jobs;
         super(id, firstName, lastName, email);
         this.jobs = jobs;
     }
+
+    public Candidate(){}
 }

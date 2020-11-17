@@ -2,14 +2,10 @@ package io.work.confino.serviceTest;
 
 import io.work.confino.exceptions.ResourceNotFoundException;
 import io.work.confino.models.Company;
-import io.work.confino.models.CompanyAccount;
-import io.work.confino.repositories.CompanyAccountMongoRepository;
 import io.work.confino.repositories.CompanyMongoRepository;
-import io.work.confino.services.CompanyAccountService;
 import io.work.confino.services.CompanyService;
-import io.work.confino.services.Impl.CompanyAccountServiceImpl;
 import io.work.confino.services.Impl.CompanyServiceImpl;
-import io.work.confino.utilsTest.VARIABLES;
+import io.work.confino.utilsTest.TestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -43,7 +39,7 @@ public class TestCompanyService {
     @Test
     void shouldSavedCompanySuccessFully(){
 
-        final Company company = VARIABLES.COMPANIES.get(0);
+        final Company company = TestHelper.COMPANIES.get(0);
 
         given(companyMongoRepository.save(company)).willAnswer(invocation -> invocation.getArgument(0) );
 
@@ -57,7 +53,7 @@ public class TestCompanyService {
 
     @Test
     void updateCompany(){
-        final Company company = VARIABLES.COMPANIES.get(0);
+        final Company company = TestHelper.COMPANIES.get(0);
 
         given(companyMongoRepository.findById(company.getId())).willReturn(Optional.of(company));
         given(companyMongoRepository.save(company)).willReturn(company);
@@ -73,7 +69,7 @@ public class TestCompanyService {
 
     @Test
     void shouldThrowErrorWhenUpdateCompanyWithIdNotExisying(){
-        final Company company = VARIABLES.COMPANIES.get(0);
+        final Company company = TestHelper.COMPANIES.get(0);
 
         given(companyMongoRepository.findById(company.getId())).willReturn(Optional.empty());
 
@@ -84,7 +80,7 @@ public class TestCompanyService {
 
     @Test
     void shouldReturnFindAll(){
-        List<Company> companies = VARIABLES.COMPANIES;
+        List<Company> companies = TestHelper.COMPANIES;
 
         given(companyMongoRepository.findAll()).willReturn(companies);
 
@@ -95,8 +91,8 @@ public class TestCompanyService {
 
     @Test
     void findCompanyId(){
-        final String id = VARIABLES.COMPANIES.get(0).getId();
-        final Company company = VARIABLES.COMPANIES.get(0);
+        final String id = TestHelper.COMPANIES.get(0).getId();
+        final Company company = TestHelper.COMPANIES.get(0);
 
         given(companyMongoRepository.findById(id)).willReturn(Optional.of(company));
 
@@ -107,9 +103,9 @@ public class TestCompanyService {
 
     @Test
     void deleteCompany(){
-        final String companyId = VARIABLES.COMPANIES.get(0).getId();
+        final String companyId = TestHelper.COMPANIES.get(0).getId();
 
-        given(companyMongoRepository.findById(companyId)).willReturn(Optional.of(VARIABLES.COMPANIES.get(0)));
+        given(companyMongoRepository.findById(companyId)).willReturn(Optional.of(TestHelper.COMPANIES.get(0)));
 
         companyService.deleteCompany(companyId);
         companyService.deleteCompany(companyId);

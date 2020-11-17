@@ -2,7 +2,7 @@ package io.work.confino.modelsTest;
 
 import io.work.confino.models.Job;
 import io.work.confino.utils.LevelExperience;
-import io.work.confino.utilsTest.VARIABLES;
+import io.work.confino.utilsTest.TestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +41,7 @@ public class JobTest {
                 .languagesRequired(languagesRequired)
                 .profile(profile)
                 .levelOfExperience(levelOfExperience)
-                .candidates(VARIABLES.CANDIDATES)
+                .candidates(TestHelper.CANDIDATES)
                 .build();
     }
 
@@ -50,7 +50,7 @@ public class JobTest {
 
         assertThat(job.getId()).isEqualTo(id);
         assertThat(job.getName()).isEqualTo(name);
-        assertThat(job.getCandidates()).isEqualTo(VARIABLES.CANDIDATES);
+        assertThat(job.getCandidates()).isEqualTo(TestHelper.CANDIDATES);
         assertThat(job.getLanguagesRequired()).isEqualTo(languagesRequired);
         assertThat(job.getLevelOfExperience()).isEqualTo(levelOfExperience);
         assertThat(job.getProfile()).isEqualTo(profile);

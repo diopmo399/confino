@@ -5,7 +5,7 @@ import io.work.confino.models.CompanyAccount;
 import io.work.confino.repositories.CompanyAccountMongoRepository;
 import io.work.confino.services.CompanyAccountService;
 import io.work.confino.services.Impl.CompanyAccountServiceImpl;
-import io.work.confino.utilsTest.VARIABLES;
+import io.work.confino.utilsTest.TestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -39,7 +39,7 @@ public class TestCompanyAccountService {
     @Test
     void shouldSavedCompanyAccountSuccessFully(){
 
-        final CompanyAccount companyAccount = VARIABLES.COMPANY_ACCOUNTS.get(0);
+        final CompanyAccount companyAccount = TestHelper.COMPANY_ACCOUNTS.get(0);
 
         given(companyAccountMongoRepository.save(companyAccount)).willAnswer(invocation -> invocation.getArgument(0) );
 
@@ -53,7 +53,7 @@ public class TestCompanyAccountService {
 
     @Test
     void updateCompanyAccount(){
-        final CompanyAccount companyAccount = VARIABLES.COMPANY_ACCOUNTS.get(0);
+        final CompanyAccount companyAccount = TestHelper.COMPANY_ACCOUNTS.get(0);
 
         given(companyAccountMongoRepository.findById(companyAccount.getId())).willReturn(Optional.of(companyAccount));
         given(companyAccountMongoRepository.save(companyAccount)).willReturn(companyAccount);
@@ -69,7 +69,7 @@ public class TestCompanyAccountService {
 
     @Test
     void shouldThrowErrorWhenUpdateCompanyAccountWithIdNotExisying(){
-        final CompanyAccount companyAccount = VARIABLES.COMPANY_ACCOUNTS.get(0);
+        final CompanyAccount companyAccount = TestHelper.COMPANY_ACCOUNTS.get(0);
 
         given(companyAccountMongoRepository.findById(companyAccount.getId())).willReturn(Optional.empty());
 
@@ -80,7 +80,7 @@ public class TestCompanyAccountService {
 
     @Test
     void shouldReturnFindAll(){
-        List<CompanyAccount> companyAccounts = VARIABLES.COMPANY_ACCOUNTS;
+        List<CompanyAccount> companyAccounts = TestHelper.COMPANY_ACCOUNTS;
 
         given(companyAccountMongoRepository.findAll()).willReturn(companyAccounts);
 
@@ -91,8 +91,8 @@ public class TestCompanyAccountService {
 
     @Test
     void findCompanyAccountId(){
-        final String id = VARIABLES.COMPANY_ACCOUNTS.get(0).getId();
-        final CompanyAccount companyAccount = VARIABLES.COMPANY_ACCOUNTS.get(0);
+        final String id = TestHelper.COMPANY_ACCOUNTS.get(0).getId();
+        final CompanyAccount companyAccount = TestHelper.COMPANY_ACCOUNTS.get(0);
 
         given(companyAccountMongoRepository.findById(id)).willReturn(Optional.of(companyAccount));
 
@@ -103,9 +103,9 @@ public class TestCompanyAccountService {
 
     @Test
     void deleteCompanyAccount(){
-        final String companyAccountId = VARIABLES.COMPANY_ACCOUNTS.get(0).getId();
+        final String companyAccountId = TestHelper.COMPANY_ACCOUNTS.get(0).getId();
 
-        given(companyAccountMongoRepository.findById(companyAccountId)).willReturn(Optional.of(VARIABLES.COMPANY_ACCOUNTS.get(0)));
+        given(companyAccountMongoRepository.findById(companyAccountId)).willReturn(Optional.of(TestHelper.COMPANY_ACCOUNTS.get(0)));
 
         companyAccountService.deleteCompanyAccount(companyAccountId);
         companyAccountService.deleteCompanyAccount(companyAccountId);

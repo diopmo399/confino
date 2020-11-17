@@ -5,7 +5,7 @@ import io.work.confino.models.Job;
 import io.work.confino.repositories.JobMongoRepository;
 import io.work.confino.services.JobService;
 import io.work.confino.services.Impl.JobServiceImpl;
-import io.work.confino.utilsTest.VARIABLES;
+import io.work.confino.utilsTest.TestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -39,7 +39,7 @@ public class TestJobService {
     @Test
     void shouldSavedJobSuccessFully(){
 
-        final Job job = VARIABLES.JOBS.get(0);
+        final Job job = TestHelper.JOBS.get(0);
 
         given(jobMongoRepository.save(job)).willAnswer(invocation -> invocation.getArgument(0) );
 
@@ -53,7 +53,7 @@ public class TestJobService {
 
     @Test
     void updateJob(){
-        final Job job = VARIABLES.JOBS.get(0);
+        final Job job = TestHelper.JOBS.get(0);
 
         given(jobMongoRepository.findById(job.getId())).willReturn(Optional.of(job));
         given(jobMongoRepository.save(job)).willReturn(job);
@@ -69,7 +69,7 @@ public class TestJobService {
 
     @Test
     void shouldThrowErrorWhenUpdateJobWithIdNotExisying(){
-        final Job job = VARIABLES.JOBS.get(0);
+        final Job job = TestHelper.JOBS.get(0);
 
         given(jobMongoRepository.findById(job.getId())).willReturn(Optional.empty());
 
@@ -80,7 +80,7 @@ public class TestJobService {
 
     @Test
     void shouldReturnFindAll(){
-        List<Job> jobs = VARIABLES.JOBS;
+        List<Job> jobs = TestHelper.JOBS;
 
         given(jobMongoRepository.findAll()).willReturn(jobs);
 
@@ -91,8 +91,8 @@ public class TestJobService {
 
     @Test
     void findJobId(){
-        final String id = VARIABLES.JOBS.get(0).getId();
-        final Job job = VARIABLES.JOBS.get(0);
+        final String id = TestHelper.JOBS.get(0).getId();
+        final Job job = TestHelper.JOBS.get(0);
 
         given(jobMongoRepository.findById(id)).willReturn(Optional.of(job));
 
@@ -103,9 +103,9 @@ public class TestJobService {
 
     @Test
     void deleteJob(){
-        final String jobId = VARIABLES.JOBS.get(0).getId();
+        final String jobId = TestHelper.JOBS.get(0).getId();
 
-        given(jobMongoRepository.findById(jobId)).willReturn(Optional.of(VARIABLES.JOBS.get(0)));
+        given(jobMongoRepository.findById(jobId)).willReturn(Optional.of(TestHelper.JOBS.get(0)));
 
         jobService.deleteJob(jobId);
         jobService.deleteJob(jobId);

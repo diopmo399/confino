@@ -23,6 +23,11 @@ public class CandidateController {
         return ResponseEntity.ok(candidateService.getAllCandidate()) ;
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Candidate> getCandidateById(@PathVariable String id){
+        return ResponseEntity.ok(candidateService.findCandidateById(id));
+    }
+
     @PostMapping
     public ResponseEntity<Candidate> saveCandidate(@RequestBody Candidate candidate){
         return ResponseEntity.status(HttpStatus.CREATED).body(candidateService.saveCandidate(candidate));

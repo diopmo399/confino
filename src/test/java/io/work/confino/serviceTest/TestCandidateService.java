@@ -5,7 +5,7 @@ import io.work.confino.models.Candidate;
 import io.work.confino.repositories.CandidateMongoRepository;
 import io.work.confino.services.CandidateService;
 import io.work.confino.services.Impl.CandidateServiceImpl;
-import io.work.confino.utilsTest.VARIABLES;
+import io.work.confino.utilsTest.TestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -42,7 +42,7 @@ public class TestCandidateService {
     @Test
     void shouldSavedCandidateSuccessFully(){
 
-        final Candidate candidate = VARIABLES.CANDIDATES.get(0);
+        final Candidate candidate = TestHelper.CANDIDATES.get(0);
 
         given(candidateMongoRepository.save(candidate)).willAnswer(invocation -> invocation.getArgument(0) );
 
@@ -55,7 +55,7 @@ public class TestCandidateService {
 
     @Test
     void updateCandidate(){
-        final Candidate candidate = VARIABLES.CANDIDATES.get(0);
+        final Candidate candidate = TestHelper.CANDIDATES.get(0);
 
         given(candidateMongoRepository.findById(candidate.getId())).willReturn(Optional.of(candidate));
         given(candidateMongoRepository.save(candidate)).willReturn(candidate);
@@ -71,7 +71,7 @@ public class TestCandidateService {
 
     @Test
     void shouldThrowErrorWhenUpdateCandidateWithIdNotExisying(){
-        final Candidate candidate = VARIABLES.CANDIDATES.get(0);
+        final Candidate candidate = TestHelper.CANDIDATES.get(0);
 
         given(candidateMongoRepository.findById(candidate.getId())).willReturn(Optional.empty());
 
@@ -82,7 +82,7 @@ public class TestCandidateService {
 
     @Test
     void shouldReturnFindAll(){
-        List<Candidate> candidates = VARIABLES.CANDIDATES;
+        List<Candidate> candidates = TestHelper.CANDIDATES;
 
         given(candidateMongoRepository.findAll()).willReturn(candidates);
 
@@ -93,8 +93,8 @@ public class TestCandidateService {
 
     @Test
     void findCandidateId(){
-        final String id = VARIABLES.CANDIDATES.get(0).getId();
-        final Candidate candidate = VARIABLES.CANDIDATES.get(0);
+        final String id = TestHelper.CANDIDATES.get(0).getId();
+        final Candidate candidate = TestHelper.CANDIDATES.get(0);
 
         given(candidateMongoRepository.findById(id)).willReturn(Optional.of(candidate));
 
@@ -105,9 +105,9 @@ public class TestCandidateService {
 
     @Test
     void deleteCandidate(){
-        final String candidateId = VARIABLES.CANDIDATES.get(0).getId();
+        final String candidateId = TestHelper.CANDIDATES.get(0).getId();
 
-        given(candidateMongoRepository.findById(candidateId)).willReturn(Optional.of(VARIABLES.CANDIDATES.get(0)));
+        given(candidateMongoRepository.findById(candidateId)).willReturn(Optional.of(TestHelper.CANDIDATES.get(0)));
 
         candidateService.deleteCandidate(candidateId);
         candidateService.deleteCandidate(candidateId);

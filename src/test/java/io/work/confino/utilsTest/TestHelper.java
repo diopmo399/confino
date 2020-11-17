@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class VARIABLES {
+public class TestHelper {
      public final static List<Job> JOBS = new ArrayList<>(Arrays.asList(
             Job.builder()
                     .id("15ee")
@@ -55,18 +55,18 @@ public class VARIABLES {
                     .city("DAKAR")
                     .country("SENEGAL")
                     .activity("IT TECHNOLOGIE")
-                    .candidates(VARIABLES.CANDIDATES)
-                    .jobs(VARIABLES.JOBS)
-                    .companyAccounts(VARIABLES.COMPANY_ACCOUNTS)
+                    .candidates(TestHelper.CANDIDATES)
+                    .jobs(TestHelper.JOBS)
+                    .companyAccounts(TestHelper.COMPANY_ACCOUNTS)
                     .build(),
              Company.builder()
                      .id("17TR")
                      .city("MAREKECH")
                      .country("Maroc")
                      .activity("IT TECHNOLOGIE")
-                     .candidates(VARIABLES.CANDIDATES)
-                     .jobs(VARIABLES.JOBS)
-                     .companyAccounts(VARIABLES.COMPANY_ACCOUNTS)
+                     .candidates(TestHelper.CANDIDATES)
+                     .jobs(TestHelper.JOBS)
+                     .companyAccounts(TestHelper.COMPANY_ACCOUNTS)
                      .build()
 
      ));
