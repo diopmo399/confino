@@ -1,14 +1,9 @@
 package io.work.confino.modelsTest;
 
 import io.work.confino.models.Candidate;
-import io.work.confino.models.Job;
-import io.work.confino.utilsTest.VARIABLES;
+import io.work.confino.utilsTest.TestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -32,7 +27,7 @@ public class CandidateTest {
                  .firstName(firstName)
                  .lastName(lastName)
                  .email(email)
-                 .jobs(VARIABLES.JOBS)
+                 .jobs(TestHelper.JOBS)
                  .build();
 
     }
@@ -44,7 +39,7 @@ public class CandidateTest {
        assertThat(candidate.getFirstName()).isEqualTo(firstName);
        assertThat(candidate.getLastName()).isEqualTo(lastName);
        assertThat(candidate.getEmail()).isEqualTo(email);
-       assertThat(candidate.getJobs()).isEqualTo(VARIABLES.JOBS);
+       assertThat(candidate.getJobs()).isEqualTo(TestHelper.JOBS);
 
     }
 

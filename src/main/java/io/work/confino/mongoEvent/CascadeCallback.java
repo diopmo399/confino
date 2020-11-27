@@ -1,6 +1,6 @@
 package io.work.confino.mongoEvent;
 
-import io.work.confino.annotation.CascadeSave;
+import io.work.confino.aspect.CascadeSave;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.util.ReflectionUtils;

@@ -1,6 +1,6 @@
 package io.work.confino.models;
 
-import io.work.confino.annotation.CascadeSave;
+import io.work.confino.aspect.CascadeSave;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,10 +9,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Document
 @Getter
 @Setter
+
 public class CompanyAccount extends User {
 
     private String username;
@@ -26,6 +28,10 @@ public class CompanyAccount extends User {
     @CascadeSave
     private List<Candidate> candidates;
 
+    @DBRef
+    @CascadeSave
+    private Set<Role> roles = new HashSet<>();
+
     @Builder
     public CompanyAccount(String id, String firstName, String lastName, String email, String username,
                           String password, List<Job> job, List<Candidate> candidate) {
@@ -35,4 +41,5 @@ public class CompanyAccount extends User {
         this.jobs = job;
         this.candidates = candidate;
     }
+    public CompanyAccount(){}
 }

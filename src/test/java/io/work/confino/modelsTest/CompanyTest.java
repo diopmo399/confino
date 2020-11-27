@@ -1,7 +1,7 @@
 package io.work.confino.modelsTest;
 
 import io.work.confino.models.Company;
-import io.work.confino.utilsTest.VARIABLES;
+import io.work.confino.utilsTest.TestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,9 +31,9 @@ public class CompanyTest {
                 .city(city)
                 .country(country)
                 .description(description)
-                .candidates(VARIABLES.CANDIDATES)
-                .jobs(VARIABLES.JOBS)
-                .companyAccounts(VARIABLES.COMPANY_ACCOUNTS).build();
+                .candidates(TestHelper.CANDIDATES)
+                .jobs(TestHelper.JOBS)
+                .companyAccounts(TestHelper.COMPANY_ACCOUNTS).build();
     }
 
     @Test
@@ -41,9 +41,9 @@ public class CompanyTest {
 
         assertThat(company.getId()).isEqualTo(id);
         assertThat(company.getActivity()).isEqualTo(activity);
-        assertThat(company.getCandidates()).isEqualTo(VARIABLES.CANDIDATES);
-        assertThat(company.getJobs()).isEqualTo(VARIABLES.JOBS);
-        assertThat(company.getCompanyAccounts()).isEqualTo(VARIABLES.COMPANY_ACCOUNTS);
+        assertThat(company.getCandidates()).isEqualTo(TestHelper.CANDIDATES);
+        assertThat(company.getJobs()).isEqualTo(TestHelper.JOBS);
+        assertThat(company.getCompanyAccounts()).isEqualTo(TestHelper.COMPANY_ACCOUNTS);
         assertThat(company.getNom()).isEqualTo(name);
         assertThat(company.getCity()).isEqualTo(city);
         assertThat(company.getCountry()).isEqualTo(country);

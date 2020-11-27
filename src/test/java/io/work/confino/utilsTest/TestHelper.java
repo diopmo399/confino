@@ -1,6 +1,7 @@
 package io.work.confino.utilsTest;
 
 import io.work.confino.models.Candidate;
+import io.work.confino.models.Company;
 import io.work.confino.models.CompanyAccount;
 import io.work.confino.models.Job;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class VARIABLES {
+public class TestHelper {
      public final static List<Job> JOBS = new ArrayList<>(Arrays.asList(
             Job.builder()
                     .id("15ee")
@@ -48,4 +49,25 @@ public class VARIABLES {
                     .password("thhhfhfff")
                     .build()
     ));
+     public final static List<Company> COMPANIES = new ArrayList<>(Arrays.asList(
+             Company.builder()
+                    .id("12thh")
+                    .city("DAKAR")
+                    .country("SENEGAL")
+                    .activity("IT TECHNOLOGIE")
+                    .candidates(TestHelper.CANDIDATES)
+                    .jobs(TestHelper.JOBS)
+                    .companyAccounts(TestHelper.COMPANY_ACCOUNTS)
+                    .build(),
+             Company.builder()
+                     .id("17TR")
+                     .city("MAREKECH")
+                     .country("Maroc")
+                     .activity("IT TECHNOLOGIE")
+                     .candidates(TestHelper.CANDIDATES)
+                     .jobs(TestHelper.JOBS)
+                     .companyAccounts(TestHelper.COMPANY_ACCOUNTS)
+                     .build()
+
+     ));
 }

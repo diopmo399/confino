@@ -1,10 +1,8 @@
 package io.work.confino.models;
 
-import io.work.confino.annotation.CascadeSave;
+import io.work.confino.aspect.CascadeSave;
 import io.work.confino.utils.LevelExperience;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,6 +14,8 @@ import java.util.List;
 @Getter
 @Setter
 @Document
+@AllArgsConstructor
+@NoArgsConstructor
 public class Job implements Serializable {
 
     @Id
