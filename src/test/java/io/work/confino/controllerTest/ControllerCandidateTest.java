@@ -4,12 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.work.confino.controller.CandidateController;
 import io.work.confino.exceptions.ResourceNotFoundException;
 import io.work.confino.models.Candidate;
-import io.work.confino.repositories.CandidateMongoRepository;
 import io.work.confino.services.CandidateService;
-import io.work.confino.services.Impl.CandidateServiceImpl;
 import io.work.confino.utilsTest.TestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.json.JacksonTester;
@@ -21,14 +20,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -36,14 +34,12 @@ public class ControllerCandidateTest {
 
     private MockMvc mvc;
 
-    @Mock
     private ObjectMapper objectMapper;
 
     @Mock
-    private CandidateMongoRepository candidateMongoRepository;
-
     private CandidateService candidateService;
 
+    @InjectMocks
     private CandidateController candidateController;
 
     // This object will be magically initialized by the initFields method below.
@@ -59,10 +55,6 @@ public class ControllerCandidateTest {
         MockitoAnnotations.initMocks(this);
 
         this.objectMapper = new ObjectMapper();
-
-        candidateService = new CandidateServiceImpl(candidateMongoRepository);
-
-        candidateController = new CandidateController(candidateService);
 
         JacksonTester.initFields(this, new ObjectMapper());
         // MockMvc standalone approach
@@ -92,9 +84,9 @@ public class ControllerCandidateTest {
         final String id = TestHelper.CANDIDATES.get(0).getId();
         final Candidate candidate = TestHelper.CANDIDATES.get(0);
 
-        given(candidateMongoRepository.findById(id)).willReturn(Optional.ofNullable(candidate));
+        given(candidateService.findCandidateById(id)).willReturn(candidate);
 
-        this.mvc.perform(get("http://localhost:9000/api/candidate/" + id)
+        this.mvc.perform(get("http://localhost:9000/api/candidate/{id}", id)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", is(Objects.requireNonNull(candidate).getFirstName())))
@@ -104,15 +96,6 @@ public class ControllerCandidateTest {
 
     }
 
-    @Test
-    void shouldReturn404WhenFindCandidateWithIdNotExist() throws Exception {
-        final String id = TestHelper.CANDIDATES.get(0).getId();
-
-        given(candidateMongoRepository.findById(id)).willReturn(Optional.empty());
-
-        this.mvc.perform(get("http://localhost/api/candidate" + id))
-                .andExpect(status().isNotFound());
-    }
 
     @Test
     void shouldCreateNewCandidate() throws Exception {
@@ -135,15 +118,13 @@ public class ControllerCandidateTest {
     void shouldUpdateCandidate() throws Exception {
         Candidate candidate = TestHelper.CANDIDATES.get(0);
         candidate.setFirstName("Konteye");
-        final Candidate candidateUpdate = candidate;
 
-        given(candidateMongoRepository.findById(candidateUpdate.getId())).willReturn(Optional.of(candidate));
-        given(candidateMongoRepository.save(any(Candidate.class))).willAnswer((invocation) -> invocation.getArgument(0));
+        given(candidateService.updateCandidate(any(Candidate.class))).willReturn(candidate);
 
         this.mvc.perform(put("http://localhost/api/candidate")
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(candidateUpdate)))
-                .andExpect(jsonPath("$.firstName", is(candidateUpdate.getFirstName())));
+                            .content(objectMapper.writeValueAsString(candidate)))
+                .andExpect(jsonPath("$.firstName", is(candidate.getFirstName())));
 
 
 
@@ -154,8 +135,7 @@ public class ControllerCandidateTest {
         String candidateId = TestHelper.CANDIDATES.get(0).getId();
         Candidate candidate = TestHelper.CANDIDATES.get(0);
 
-        given(candidateMongoRepository.findById(candidateId)).willReturn(Optional.of(candidate));
-        doNothing().when(candidateMongoRepository).deleteById(candidate.getId());
+        doNothing().when(candidateService).deleteCandidate(candidateId);
 
         this.mvc.perform(delete("http://localhost/api/candidate/{id}", candidate.getId()))
                                         .andExpect(status().isOk());

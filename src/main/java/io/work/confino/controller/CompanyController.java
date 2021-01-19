@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("api/company")
 public class CompanyController {
 
-    final private CompanyService companyService;
+    private CompanyService companyService;
 
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;

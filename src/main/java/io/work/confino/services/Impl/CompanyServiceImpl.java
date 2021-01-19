@@ -5,6 +5,7 @@ import io.work.confino.models.Company;
 import io.work.confino.models.CompanyAccount;
 import io.work.confino.repositories.CompanyMongoRepository;
 import io.work.confino.services.CompanyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,10 +15,9 @@ public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyMongoRepository companyMongoRepository;
 
+    @Autowired
     public CompanyServiceImpl(CompanyMongoRepository companyMongoRepository) {
-
         this.companyMongoRepository = companyMongoRepository;
-
     }
 
     @Override

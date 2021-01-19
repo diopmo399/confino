@@ -8,6 +8,7 @@ import io.work.confino.services.Impl.JobServiceImpl;
 import io.work.confino.utilsTest.TestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -28,12 +29,12 @@ public class TestJobService {
     @Mock
     private JobMongoRepository jobMongoRepository;
 
-    private JobService jobService;
+    @InjectMocks
+    private JobServiceImpl jobService;
 
     @BeforeEach
     void setup(){
         MockitoAnnotations.initMocks(this);
-        jobService = new JobServiceImpl(jobMongoRepository);
     }
 
     @Test

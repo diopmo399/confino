@@ -3,11 +3,11 @@ package io.work.confino.serviceTest;
 import io.work.confino.exceptions.ResourceNotFoundException;
 import io.work.confino.models.Company;
 import io.work.confino.repositories.CompanyMongoRepository;
-import io.work.confino.services.CompanyService;
 import io.work.confino.services.Impl.CompanyServiceImpl;
 import io.work.confino.utilsTest.TestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -28,12 +28,12 @@ public class TestCompanyService {
     @Mock
     private CompanyMongoRepository companyMongoRepository;
 
-    private CompanyService companyService;
+    @InjectMocks
+    private CompanyServiceImpl companyService;
 
     @BeforeEach
     void setup(){
         MockitoAnnotations.initMocks(this);
-        companyService = new CompanyServiceImpl(companyMongoRepository);
     }
 
     @Test

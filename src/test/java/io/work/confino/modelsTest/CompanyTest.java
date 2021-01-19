@@ -25,7 +25,7 @@ public class CompanyTest {
     void init() {
        company = Company.builder()
                 .id(id)
-                .nom(name)
+                .name(name)
                 .activity(activity)
                 .website(website)
                 .city(city)
@@ -44,7 +44,7 @@ public class CompanyTest {
         assertThat(company.getCandidates()).isEqualTo(TestHelper.CANDIDATES);
         assertThat(company.getJobs()).isEqualTo(TestHelper.JOBS);
         assertThat(company.getCompanyAccounts()).isEqualTo(TestHelper.COMPANY_ACCOUNTS);
-        assertThat(company.getNom()).isEqualTo(name);
+        assertThat(company.getName()).isEqualTo(name);
         assertThat(company.getCity()).isEqualTo(city);
         assertThat(company.getCountry()).isEqualTo(country);
         assertThat(company.getWebsite()).isEqualTo(website);

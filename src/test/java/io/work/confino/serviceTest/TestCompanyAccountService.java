@@ -8,6 +8,7 @@ import io.work.confino.services.Impl.CompanyAccountServiceImpl;
 import io.work.confino.utilsTest.TestHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -28,12 +29,12 @@ public class TestCompanyAccountService {
     @Mock
     private CompanyAccountMongoRepository companyAccountMongoRepository;
 
-    private CompanyAccountService companyAccountService;
+    @InjectMocks
+    private CompanyAccountServiceImpl companyAccountService;
 
     @BeforeEach
     void setup(){
         MockitoAnnotations.initMocks(this);
-        companyAccountService = new CompanyAccountServiceImpl(companyAccountMongoRepository);
     }
 
     @Test
